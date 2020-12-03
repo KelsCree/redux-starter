@@ -19,9 +19,15 @@ class App extends Component{
   render(){
     return (
       <div className="App">
-        <CharactersContainer characters={this.state.characters} />
+        <CharactersContainer characters={this.props.characters} />
       </div>
     );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    characters: state.characters
   }
 }
 
@@ -31,4 +37,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
