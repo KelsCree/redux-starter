@@ -3,11 +3,40 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux'
+import { createStore, combineReducers } from 'redux'
+
+
+
+const userReducer = (state={}, action) => {
+  switch(action.type) {
+    default:
+      return state
+  }
+}
+
+const charactersReducer = (state=[], action) => {
+  switch(action.type){
+    case 'SET_CHARACTERS':
+      return action.payload
+    case 'ADD_CHARACTER':
+      return [...state, action.payload]
+    default:
+      return state
+    
+  }
+}
+
+const store = createStore(reducer)
+const reducer = combineReducers({
+  user: userReducer,
+  characters: charactersReducer
+})
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
